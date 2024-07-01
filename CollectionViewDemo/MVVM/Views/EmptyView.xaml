@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CollectionViewDemo.MVVM.Views.EmptyView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Resources>
+        <ContentView x:Key="NoResultsView">
+            <Frame
+                Margin="25"
+                BackgroundColor="{StaticResource Secondary}"
+                CornerRadius="15"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+                <VerticalStackLayout>
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="180"
+                        HorizontalOptions="Center"
+                        IsAnimationPlaying="True"
+                        Source="notfound"
+                        VerticalOptions="Center" />
+                    <Label
+                        Margin="15"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        HorizontalTextAlignment="Center"
+                        Text="No Data Found! Please Try Again..."
+                        TextColor="{StaticResource SecondaryDarkText}" />
+                </VerticalStackLayout>
+            </Frame>
+        </ContentView>
+
+        <ContentView x:Key="ConnectivityIssue">
+            <Frame
+                Margin="25"
+                BackgroundColor="{StaticResource Secondary}"
+                CornerRadius="15"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+                <VerticalStackLayout>
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="180"
+                        HorizontalOptions="Center"
+                        Source="no_internet.png"
+                        VerticalOptions="Center" />
+                    <Label
+                        Margin="15"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        HorizontalTextAlignment="Center"
+                        Text="Check your internet connection..."
+                        TextColor="{StaticResource SecondaryDarkText}" />
+                </VerticalStackLayout>
+            </Frame>
+        </ContentView>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions=".2*, .8*">
+
+        <HorizontalStackLayout>
+            <Label Text="Toggle Empty Views" />
+            <Switch Toggled="Switch_Toggled" />
+        </HorizontalStackLayout>
+
+        <CollectionView x:Name="collectionView" Grid.Row="1">
+            <CollectionView.EmptyView>
+                <Frame
+                    Margin="25"
+                    BackgroundColor="{StaticResource Secondary}"
+                    CornerRadius="15"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+                    <VerticalStackLayout>
+                        <Image
+                            Aspect="AspectFill"
+                            HeightRequest="180"
+                            HorizontalOptions="Center"
+                            IsAnimationPlaying="True"
+                            Source="notfound"
+                            VerticalOptions="Center" />
+                        <Label
+                            Margin="15"
+                            FontAttributes="Bold"
+                            FontSize="Large"
+                            HorizontalTextAlignment="Center"
+                            Text="No Data Found! Please Try Again..."
+                            TextColor="{StaticResource SecondaryDarkText}" />
+                    </VerticalStackLayout>
+                </Frame>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <!--<x:String>Row Sample</x:String>
+                    <x:String>Row Sample</x:String>
+                    <x:String>Row Sample</x:String>
+                    <x:String>Row Sample</x:String>
+                    <x:String>Row Sample</x:String>
+                    <x:String>Row Sample</x:String>
+                    <x:String>Row Sample</x:String>
+                    <x:String>Row Sample</x:String>
+                    <x:String>Row Sample</x:String>
+                    <x:String>Row Sample</x:String>-->
+                </x:Array>
+            </CollectionView.ItemsSource>
+        </CollectionView>
+    </Grid>
+</ContentPage>

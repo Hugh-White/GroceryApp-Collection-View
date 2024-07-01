@@ -13,10 +13,26 @@ namespace CollectionViewDemo.MVVM.ViewModels
     [AddINotifyPropertyChangedInterface]
     public class DataViewModel
     {
+        #region Private Fields
+        //Product model object to hold value for a chosen product (single selection)
+        private Product? selectedProduct;
+        //List of objects to be populated with Product objects for holding values of a range of chosen products (multiple selection)
+        private List<object>? selectedProducts;
+        #endregion
+
         #region Properties
         //Properties
         public ObservableCollection<Product>? Products { get; set; } = new ObservableCollection<Product>();
         public bool IsRefreshing {  get; set; }
+        public Product? SelectedProduct
+        {
+            get => selectedProduct; set
+            {
+                selectedProduct = value;
+            }
+        }
+        public List<object>? SelectedProducts {  get; set; } = new List<object>();
+
         #endregion
 
         #region Commands
@@ -36,12 +52,39 @@ namespace CollectionViewDemo.MVVM.ViewModels
             RefreshItems(Products.Count);
         });
 
+        public ICommand DeleteCommand => new Command((p) =>
+        {
+            Products.Remove((Product)p);
+        });
+
+        public ICommand ProductChangedCommand => new Command(() => 
+        {
+            var selectedProduct = SelectedProduct;
+        });
+
+        public ICommand ProductsChangedCommand => new Command(() =>
+        {
+            var productsList = SelectedProducts;
+        });
+
+        public ICommand ClearCommand => new Command(() =>
+        {
+            SelectedProduct = null;
+            SelectedProducts = null;
+        });
+        
         #endregion
+
+        #region Constructor
         public DataViewModel() 
         {
             RefreshItems();
-        }
+            SelectedProduct = Products.Skip(2).FirstOrDefault();
 
+        }
+        #endregion
+
+        #region Methods
         private void RefreshItems(int lastIndex = 0)
         {
             int numOfItemsPerPage = 10;
@@ -468,5 +511,7 @@ namespace CollectionViewDemo.MVVM.ViewModels
                 Products.Add(item);
             }
         }
+        #endregion
+
     }
 }

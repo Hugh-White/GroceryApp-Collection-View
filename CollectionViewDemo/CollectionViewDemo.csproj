@@ -87,7 +87,7 @@
 	  <None Remove="Resources\Images\meat.png" />
 	  <None Remove="Resources\Images\milk_bottle.png" />
 	  <None Remove="Resources\Images\mushroom.png" />
-	  <None Remove="Resources\Images\notfound.png" />
+	  <None Remove="Resources\Images\notfound.gif" />
 	  <None Remove="Resources\Images\no_internet.png" />
 	  <None Remove="Resources\Images\oil_bottle.png" />
 	  <None Remove="Resources\Images\pasta.png" />
@@ -106,7 +106,8 @@
 	  <None Remove="Resources\Images\toffee.png" />
 	  <None Remove="Resources\Images\tomato.png" />
 	  <None Remove="Resources\Images\tomato_sauce.png" />
-	  <None Remove="Resources\Images\trash.png" />
+	  <None Remove="Resources\Images\trash.svg" />
+	  <None Remove="Resources\Images\twash.png" />
 	  <None Remove="Resources\Images\watermelon.png" />
 	  <None Remove="Resources\Images\water_bottle.png" />
 	  <None Remove="Resources\Images\yogurt.png" />
@@ -121,6 +122,15 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="MVVM\Views\DataView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\EmptyView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\LayoutsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\ProductsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\CollectionViewDictionary.xaml">

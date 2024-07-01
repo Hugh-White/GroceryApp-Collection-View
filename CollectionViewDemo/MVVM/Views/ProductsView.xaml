@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CollectionViewDemo.MVVM.Views.ProductsView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="ProductsView">
+
+    <Grid RowDefinitions=".9*, .1*">
+        <CollectionView
+            x:Name="collectionView"
+            IsGrouped="True"
+            ItemsSource="{Binding Products}"
+            ItemsUpdatingScrollMode="KeepLastItemInView"
+            Scrolled="CollectionView_Scrolled_1">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    Orientation="Vertical"
+                    SnapPointsAlignment="Start"
+                    SnapPointsType="Mandatory"
+                    Span="2" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame
+                        Margin="15"
+                        BackgroundColor="White"
+                        CornerRadius="15">
+                        <VerticalStackLayout>
+                            <Image Source="{Binding Image}" />
+                            <Label Text="{Binding Name}" />
+                            <Label Text="{Binding Price}" />
+                            <Label Text="{Binding Id}" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <Label
+                        Margin="15"
+                        BackgroundColor="{AppThemeBinding Dark={StaticResource PrimaryDark},
+                                                          Light={StaticResource Primary}}"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Name}"
+                        TextColor="{AppThemeBinding Dark={StaticResource Gray100Brush},
+                                                    Light={StaticResource White}}"
+                        TextDecorations="Underline" />
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+            <CollectionView.GroupFooterTemplate>
+                <DataTemplate>
+                    <Label
+                        Margin="10,0,0,0"
+                        Text="{Binding Count, StringFormat='Total Products: {0:D}'}"
+                        TextColor="MidnightBlue"
+                        TextDecorations="Underline" />
+                </DataTemplate>
+            </CollectionView.GroupFooterTemplate>
+        </CollectionView>
+
+        <Button
+            Grid.Row="1"
+            Margin="10"
+            Clicked="Button_Clicked"
+            CornerRadius="15"
+            Text="Manual Scrolling" />
+    </Grid>
+</ContentPage>
